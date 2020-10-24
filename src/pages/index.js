@@ -1,17 +1,17 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
-import Image from "gatsby-image"
+import React from 'react';
+import { Link, graphql } from 'gatsby';
+import Image from 'gatsby-image';
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import Card from "../components/card"
+import Bio from '../components/bio';
+import Layout from '../components/layout';
+import SEO from '../components/seo';
+import Card from '../components/card';
 
-import './home.css'
+import './home.css';
 
 const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes
+  const siteTitle = data.site.siteMetadata?.title || 'Title';
+  const posts = data.allMarkdownRemark.nodes;
 
   if (posts.length === 0) {
     return (
@@ -24,7 +24,7 @@ const BlogIndex = ({ data, location }) => {
           gatsby-config.js).
         </p>
       </Layout>
-    )
+    );
   }
 
   return (
@@ -33,9 +33,9 @@ const BlogIndex = ({ data, location }) => {
       {/* <Bio /> */}
       <div className="container">
         <div className="row mt-4">
-          {posts.map(post => {
-            const title = post.frontmatter.title || post.fields.slug
-            const featuredImage = post.frontmatter.featuredImage?.childImageSharp?.fluid
+          {posts.map((post) => {
+            const title = post.frontmatter.title || post.fields.slug;
+            const featuredImage = post.frontmatter.featuredImage?.childImageSharp?.fluid;
 
             return (
               <div className="col-12 col-md-6 col-lg-4" key={post.fields.slug}>
@@ -49,7 +49,7 @@ const BlogIndex = ({ data, location }) => {
                       >
                         <header>
                           <h2>
-                              <span itemProp="headline">{title}</span>
+                            <span itemProp="headline">{title}</span>
                           </h2>
                         </header>
                         <section>
@@ -60,8 +60,8 @@ const BlogIndex = ({ data, location }) => {
                             itemProp="description"
                           />
                         </section>
-                        <div class="row justify-content-end">
-                          <div class="col-auto">
+                        <div className="row justify-content-end">
+                          <div className="col-auto">
                             <small>{post.frontmatter.date}</small>
                           </div>
                         </div>
@@ -70,15 +70,15 @@ const BlogIndex = ({ data, location }) => {
                   </Card>
                 </Link>
               </div>
-            )
+            );
           })}
         </div>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default BlogIndex
+export default BlogIndex;
 
 export const pageQuery = graphql`
   query {
@@ -108,4 +108,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
