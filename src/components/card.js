@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'gatsby-image';
 
-import './card.css';
+import './card.scss';
 
 const Card = ({ children }) => (
   <div className="card">

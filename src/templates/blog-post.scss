@@ -1,0 +1,11 @@
+@import "../variables.scss";
+
+.blog-post {
+  padding: 0;
+}
+
+@media (min-width: 992px) {
+  .blog-post {
+    padding: 1rem;
+  }
+}

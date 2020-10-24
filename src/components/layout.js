@@ -1,28 +1,19 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-import './layout.css';
+import './layout.scss';
 
 const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`;
   const isRootPath = location.pathname === rootPath;
-  let header;
 
-  if (isRootPath) {
-    header = (
-      <div className="root-header">
-        <h1>
-          <Link to="/">{title}</Link>
-        </h1>
-      </div>
-    );
-  } else {
-    header = (
-      <Link className="header-link-home" to="/">
-        {title}
-      </Link>
-    );
-  }
+  const header = (
+    <div className="root-header">
+      <h1>
+        <Link to="/">{title}</Link>
+      </h1>
+    </div>
+  );
 
   return (
     <div>

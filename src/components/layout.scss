@@ -1,3 +1,5 @@
+@import "../variables.scss";
+
 .root-header {
   display: flex;
   width: 100%;
@@ -6,5 +8,5 @@
 }
 
 .root-header h1 {
-  color: #FFF;
+  color: $content-4;
 }
