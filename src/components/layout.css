@@ -1,0 +1,11 @@
+.root-header {
+  display: flex;
+  width: 100%;
+  background-color: pink;
+  justify-content: center;
+  align-items: center;
+}
+
+.root-header h1 {
+  color: #FFF;
+}

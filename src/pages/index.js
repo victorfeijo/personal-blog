@@ -1,9 +1,11 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import Image from "gatsby-image"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Card from "../components/card"
 
 import './home.css'
 
@@ -28,38 +30,49 @@ const BlogIndex = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="All posts" />
-      <Bio />
-      <div className="table" style={{ listStyle: `none` }}>
-        {posts.map(post => {
-          const title = post.frontmatter.title || post.fields.slug
+      {/* <Bio /> */}
+      <div className="container">
+        <div className="row mt-4">
+          {posts.map(post => {
+            const title = post.frontmatter.title || post.fields.slug
+            const featuredImage = post.frontmatter.featuredImage?.childImageSharp?.fluid
 
-          return (
-            <div key={post.fields.slug}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <header>
-                  <h2>
-                    <Link to={post.fields.slug} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.frontmatter.date}</small>
-                </header>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.description || post.excerpt,
-                    }}
-                    itemProp="description"
-                  />
-                </section>
-              </article>
-            </div>
-          )
-        })}
+            return (
+              <div className="col-12 col-md-6 col-lg-4" key={post.fields.slug}>
+                <Link to={post.fields.slug} itemProp="url">
+                  <Card>
+                    {featuredImage && <Card.Image image={featuredImage} />}
+                    <Card.Body>
+                      <article
+                        itemScope
+                        itemType="http://schema.org/Article"
+                      >
+                        <header>
+                          <h2>
+                              <span itemProp="headline">{title}</span>
+                          </h2>
+                        </header>
+                        <section>
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html: post.frontmatter.description || post.excerpt,
+                            }}
+                            itemProp="description"
+                          />
+                        </section>
+                        <div class="row justify-content-end">
+                          <div class="col-auto">
+                            <small>{post.frontmatter.date}</small>
+                          </div>
+                        </div>
+                      </article>
+                    </Card.Body>
+                  </Card>
+                </Link>
+              </div>
+            )
+          })}
+        </div>
       </div>
     </Layout>
   )
@@ -84,6 +97,13 @@ export const pageQuery = graphql`
           date(formatString: "MMMM DD, YYYY")
           title
           description
+          featuredImage {
+            childImageSharp {
+              fluid(maxWidth: 800) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
         }
       }
     }
