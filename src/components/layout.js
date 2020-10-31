@@ -1,23 +1,17 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
+import Profile from './profile';
+
 import './layout.scss';
 
 const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`;
   const isRootPath = location.pathname === rootPath;
 
-  const header = (
-    <div className="root-header">
-      <h1>
-        <Link to="/">{title}</Link>
-      </h1>
-    </div>
-  );
-
   return (
     <div>
-      {header}
+      <Profile title={title} isRootPath={isRootPath} />
       <main>{children}</main>
       <footer>
         ©

@@ -1,0 +1,40 @@
+@import "../variables.scss";
+
+.profile {
+  margin-top: 40px;
+
+  h1 {
+    color: $content-4;
+  }
+}
+
+.code {
+  font-family: "Source Code Pro", monospace, monospace;
+  color: $content-4;
+  background-color: $background-light-1;
+  font-size: 20px;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow: auto;
+}
+
+.code__block {
+  padding-left: 1rem;
+}
+
+.code__line {
+  display: block;
+  margin: 0;
+}
+
+.code__tag {
+  color: $red;
+}
+
+.code__attr {
+  color: $green;
+}
+
+.code__value {
+  color: $cyan;
+}
